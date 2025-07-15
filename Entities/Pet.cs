@@ -1,4 +1,4 @@
-﻿using CSV_Enumerable.Models;
+﻿using Write_from_csv_to_database.Models;
 
 namespace Write_from_csv_to_database.Entities;
 

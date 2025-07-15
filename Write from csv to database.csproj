@@ -9,18 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CSV Enumerable\CSV Enumerable.csproj" />
-    <ProjectReference Include="..\Generic object mapper\Generic object mapper.csproj" />
-    <ProjectReference Include="..\Logging Proxy\Logging Proxy.csproj" />
+    <None Remove="Pets_And_Owners.csv" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="33.1.0" />
+    <PackageReference Include="ImpromptuInterface" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Pets_And_Owners.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

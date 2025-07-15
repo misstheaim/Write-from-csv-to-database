@@ -1,5 +1,5 @@
-﻿using CSV_Enumerable.Models;
-using Stream_Processing;
+﻿using Stream_Processing;
+using Write_from_csv_to_database.Models;
 using Write_from_csv_to_database.Services;
 
 namespace Write_from_csv_to_database
