@@ -1,4 +1,5 @@
 ﻿using Stream_Processing;
+using Write_from_csv_to_database.Dependencies;
 using Write_from_csv_to_database.Models;
 using Write_from_csv_to_database.Services;
 
@@ -39,6 +40,45 @@ namespace Write_from_csv_to_database
                 foreach (Pet pet in pets)
                 {
                     Console.WriteLine(pet.ToString());
+                }
+
+                // --------- Part with JSON serialization ----------
+                Console.WriteLine("\n\n--------- Part with JSON serialization ----------\n");
+                if (!Directory.Exists("Json"))
+                {
+                    Directory.CreateDirectory("Json");
+                }
+
+                JSONSerializer serializer = new JSONSerializer();
+                string jsonPath = "Json\\PetModel";
+
+                int i = 0;
+                foreach (Pet pet in pets)
+                {
+                    i++;
+                    await serializer.WriteJsonAsync(jsonPath + i + ".json", pet);
+                }
+
+                for(int j = 0; j < i;)
+                {
+                    j++;
+                    Console.WriteLine(await serializer.ReadJsonAsync(jsonPath + j + ".json"));
+                }
+
+                Console.WriteLine("\n\nAnother JSON worker\n");
+                jsonPath = "Json\\PetContract";
+
+                i = 0;
+                foreach (Pet pet in pets)
+                {
+                    i++;
+                    serializer.WriteJson(jsonPath + i + ".json", pet);
+                }
+
+                for (int j = 0; j < i;)
+                {
+                    j++;
+                    Console.WriteLine(serializer.ReadJson<Pet>(jsonPath + j + ".json"));
                 }
             }
             catch (ArgumentException)
